@@ -1,9 +1,9 @@
 Summary:	Parallel bzip2/bunzip2 Filter
 Name:		lbzip2
-Version:	0.20
+Version:	0.23
 Release:	1
 Source0:	http://lacos.web.elte.hu/pub/lbzip2/%{name}-%{version}.tar.gz
-# Source0-md5:	9f5479de40f928e77062a62c8a74d831
+# Source0-md5:	72ab7fbfd3804e4ef1a2030f51ac3825
 Patch1:		%{name}-makefile.patch
 License:	GPL v2+
 Group:		Applications/Archiving
