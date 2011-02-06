@@ -42,7 +42,7 @@ install -D lbzip2 $RPM_BUILD_ROOT%{_bindir}/lbzip2
 install -D lbzip2.1 $RPM_BUILD_ROOT%{_mandir}/man1/lbzip2.1
 
 %clean
-rm -rf "$RPM_BUILD_ROOT"
+rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
