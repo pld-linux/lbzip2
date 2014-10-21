@@ -1,14 +1,16 @@
 Summary:	Parallel bzip2/bunzip2 Filter
 Name:		lbzip2
-Version:	0.23
+Version:	2.5
 Release:	1
-Source0:	http://lacos.web.elte.hu/pub/lbzip2/%{name}-%{version}.tar.gz
-# Source0-md5:	72ab7fbfd3804e4ef1a2030f51ac3825
-Patch1:		%{name}-makefile.patch
+Source0:	https://github.com/kjn/lbzip2/archive/v%{version}.tar.gz
+# Source0-md5:	288e404f325d9073bdc80759cae30adc
 License:	GPL v2+
 Group:		Applications/Archiving
-URL:		http://lacos.hu/
-BuildRequires:	bzip2-devel
+URL:		http://lbzip2.org/
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	gnulib
+BuildRequires:	perl-base
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -28,24 +30,30 @@ Lbzip2 strives to be portable by requiring UNIX 98 APIs only, besides
 an unmodified libbz2.
 
 %prep
-%setup -q -n %{name}
-%patch1
+%setup -q
 
 %build
-%{__make} \
-	CC="%{__cc}" \
-	OPTFLAGS="%{optflags}"
+./build-aux/autogen.sh
+%configure \
+	--disable-silent-rules
+
+%{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -D lbzip2 $RPM_BUILD_ROOT%{_bindir}/lbzip2
-install -D lbzip2.1 $RPM_BUILD_ROOT%{_mandir}/man1/lbzip2.1
+
+%{__make} install \
+	DESTDIR=$RPM_BUILD_ROOT
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc ChangeLog README
+%doc ALGORITHM AUTHORS ChangeLog* NEWS THANKS
 %attr(755,root,root) %{_bindir}/lbzip2
+%attr(755,root,root) %{_bindir}/lbunzip2
+%attr(755,root,root) %{_bindir}/lbzcat
 %{_mandir}/man1/lbzip2.1*
+%{_mandir}/man1/lbunzip2.1*
+%{_mandir}/man1/lbzcat.1*
