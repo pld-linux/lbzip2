@@ -2,7 +2,7 @@ Summary:	Parallel bzip2/bunzip2 Filter
 Summary(pl.UTF-8):	Zrównoleglony filtr bzip2/bunzip2
 Name:		lbzip2
 Version:	2.5
-Release:	1
+Release:	2
 License:	GPL v3+
 Group:		Applications/Archiving
 Source0:	https://github.com/kjn/lbzip2/archive/v%{version}.tar.gz
